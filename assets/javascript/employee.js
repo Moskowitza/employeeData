@@ -24,4 +24,11 @@ $("#submit").on("click", function(event) {
     position=$("#position").val().trim();
     startDate=$("#startDate").val().trim();
     monthsWorked=$("#monthsWorked").val().trim();
+
+    database.ref().push({
+    name:name,
+    position:position,
+    startDate:startDate,
+    monthsWorked:monthsWorked
+    });
 });
