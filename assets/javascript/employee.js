@@ -19,4 +19,9 @@ var totalBilled = "";
 
 $("#submit").on("click", function(event) {
     event.preventDefault();
+    
+    name=$("#name").val().trim();
+    position=$("#position").val().trim();
+    startDate=$("#startDate").val().trim();
+    monthsWorked=$("#monthsWorked").val().trim();
 });
