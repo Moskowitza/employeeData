@@ -19,7 +19,7 @@ var totalBilled = "";
 
 $("#submit").on("click", function(event) {
     event.preventDefault();
-    
+    console.log("hi");
     name=$("#name").val().trim();
     position=$("#position").val().trim();
     startDate=$("#startDate").val().trim();
