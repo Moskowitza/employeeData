@@ -23,7 +23,7 @@ $("#submit").on("click", function(event) {
     name=$("#name").val().trim();
     position=$("#position").val().trim();
     startDate=$("#startDate").val().trim();
-    monthsWorked=$("#monthsWorked").val().trim();
+    monthlyRate=$("#monthlyRate").val().trim();
 
     database.ref().push({
     name:name,
