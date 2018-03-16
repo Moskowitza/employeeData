@@ -12,8 +12,11 @@ var database = firebase.database();
 
 var name = "";
 var position = "";
-var startDate = "";
-var monthsWorked = "";
+var startDate = "01/01/2018";
+
+var startMoment = moment(startDate, "MM/DD/YYYY");
+var monthsWorked = moment().diff(startMoment, "months");
+console.log(monthsWorked);
 var monthlyRate = "";
 var totalBilled = "";
 
@@ -31,6 +34,7 @@ $("#submit").on("click", function(event) {
     startDate:startDate,
     monthsWorked:monthsWorked
     });
+
 
     // let's fill in a table?
     var tBody = $("tbody");
