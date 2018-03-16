@@ -12,9 +12,11 @@ var database = firebase.database();
 
 var name = "";
 var position = "";
-var startDate = "01/01/2018";
-
-var monthlyRate = "";
+var startDate = "09/01/2017";
+var startFormat = "MM/DD/YYYY";
+var startMoment= moment(startDate, startFormat);  
+console.log(moment(startMoment).diff(moment(), "months"));
+var monthlyRate = 100;
 var totalBilled = "";
 
 $("#submit").on("click", function(event) {
@@ -39,21 +41,23 @@ $("#submit").on("click", function(event) {
     database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(childsnapshot) {
       $(".tableBody").empty()
       // moved the moment calculation to down here
-     
-      var startMoment = moment(childsnapshot.val().startDate, "MM/DD/YYYY");
-      var monthsWorked = moment("m").diff(startMoment, "m"); //should be a number but isn't
+      startDate=childsnapshot.val().startDate;
+      var startMoment = moment(startDate, startFormat);
+      var monthsDiffernce = moment(startMoment).diff(moment(), "m"); //should be a number but isn't
+      var monthsWorked = monthsDiffernce * (-1); 
       var monthsWorkedTd = $("<td>").text(monthsWorked);
-      //totalTd is Total Billed number.  Months Worked x Rate: as long as both are numbers
-      var totalTd = monthsWorked * parseInt(childsnapshot.val().monthlyRate);
+      //totalTd doesn't work because monthsWorked is not a number
+      var rateNumber=parseInt(childsnapshot.val().monthlyRate);
+      console.log(rateNumber); //this is a NUMBER!
+      var totalTd = monthsWorked * rateNumber;
 
-      console.log(monthsWorked);  //shoots NAN Error, let's dig 
-      console.log(startMoment); //returns an moment object
-      console.log(childsnapshot.val().startDate); //returns the date entered
-      console.log(totalTd);
+      console.log(monthsDiffernce);  //shoots NAN Error, let's dig 
+      console.log(startDate); //returns the date entered
+      console.log(totalTd); //NAN
       //Check these names. may want to use childsnapshot.val()
       var nameTd = $("<td>").text(childsnapshot.val().name);
       var positionTd = $("<td>").text(childsnapshot.val().position);
-      var startDateTd = $("<td>").text(childsnapshot.val().startdate);
+      var startDateTd = $("<td>").text(childsnapshot.val().startDate);
 
       var monthlyRateTd=$("<td>").text(childsnapshot.val().monthlyRate);
       tRow.append(nameTd, positionTd, startDateTd, monthsWorkedTd, monthlyRateTd, totalTd);
