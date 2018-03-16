@@ -39,12 +39,15 @@ $("#submit").on("click", function(event) {
     // let's fill in a table?
     var tBody = $("tbody");
     var tRow = $("<tr>");
+    database.ref().on("child_added", function(childsnapshot) {
+      //Check these names. may want to use childsnapshot.val()
+      var nameTd = $("<td>").text(childsnapshot.val().name);
+      var positionTd = $("<td>").text(childsnapshot.val().position);
+      var startDateTd = $("<td>").text(childsnapshot.val().startdate);
+      var monthsWorkedTd=$("<td>").text(childsnapshot.val().monthsWorked);
+      tRow.append(nameTd, positionTd, startDateTd, monthsWorkedTd);
+      tBody.append(tRow);
 
-    //Check these names. may want to use childsnapshot.val()
-    var nameTd = $("<td>").text(childsnapshot.val().name);
-    var positionTd = $("<td>").text(childsnapshot.val().position);
-    var startDateTd = $("<td>").text(childsnapshot.val().startdate);
-    var monthsWorkedTd=$("<td>").text(childsnapshot.val().monthsWorked);
-    tRow.append(nameTd, posionTd, startDateTd, monthsWorkedTd);
-    tBody.append(tRow);
+      $(".table").append(trow)
+    })
 });
