@@ -14,9 +14,6 @@ var name = "";
 var position = "";
 var startDate = "01/01/2018";
 
-var startMoment = moment(startDate, "MM/DD/YYYY");
-var monthsWorked = moment().diff(startMoment, "months");
-console.log(monthsWorked);
 var monthlyRate = "";
 var totalBilled = "";
 
@@ -32,22 +29,26 @@ $("#submit").on("click", function(event) {
     name:name,
     position:position,
     startDate:startDate,
-    monthsWorked:monthsWorked
+    monthlyRate:monthlyRate
     });
+  });
 
 
     // let's fill in a table?
-    var tBody = $("tbody");
     var tRow = $("<tr>");
-    database.ref().on("child_added", function(childsnapshot) {
+    database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(childsnapshot) {
+      $(".tableBody").empty()
+      // moved the moment calculation to down here
+      var startMoment = moment(childsnapshot.val().startDate, "MM/DD/YYYY");
+      var monthsWorked = moment().diff(startMoment, "months");
+      var monthsWorkedTd = $("<td>").text(monthsWorked)
+      var total = monthsWorked * parseInt(childsnapshot.val().monthlyRate)
+      console.log(monthsWorked);
       //Check these names. may want to use childsnapshot.val()
       var nameTd = $("<td>").text(childsnapshot.val().name);
       var positionTd = $("<td>").text(childsnapshot.val().position);
       var startDateTd = $("<td>").text(childsnapshot.val().startdate);
-      var monthsWorkedTd=$("<td>").text(childsnapshot.val().monthsWorked);
-      tRow.append(nameTd, positionTd, startDateTd, monthsWorkedTd);
-      tBody.append(tRow);
-
-      $(".table").append(trow)
+      var monthlyRate=$("<td>").text(childsnapshot.val().monthlyRate);
+      tRow.append(nameTd, positionTd, monthlyRate, startDateTd, monthsWorkedTd);
+      $(".tableBody").append(tRow)
     })
-});
