@@ -31,4 +31,16 @@ $("#submit").on("click", function(event) {
     startDate:startDate,
     monthsWorked:monthsWorked
     });
+
+    // let's fill in a table?
+    var tBody = $("tbody");
+    var tRow = $("<tr>");
+
+    //Check these names. may want to use childsnapshot.val()
+    var nameTd = $("<td>").text(childsnapshot.val().name);
+    var positionTd = $("<td>").text(childsnapshot.val().position);
+    var startDateTd = $("<td>").text(childsnapshot.val().startdate);
+    var monthsWorkedTd=$("<td>").text(childsnapshot.val().monthsWorked);
+    tRow.append(nameTd, posionTd, startDateTd, monthsWorkedTd);
+    tBody.append(tRow);
 });
