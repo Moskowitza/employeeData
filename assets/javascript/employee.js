@@ -43,11 +43,11 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
   // Calculate Months Worked
   var startDate = childsnapshot.val().startDate;
   console.log(startDate); //does get last date, but as YYYY/MM/DD 
-  var startMoment = moment(startDate).format("DD/MM/YYYY");
+  var startMoment = moment(startDate).format("MM/DD/YYYY");
   console.log(startMoment);//this is an object
-  var monthsDiffernce = moment(startMoment).diff(moment(new Date()), "M"); //should be a number but isn't
+  var monthsDiffernce = moment().diff(moment(startMoment), "M"); //should be a number but isn't
   var monthsNumber = parseInt(monthsDiffernce);
-  console.log(monthsDiffernce); //this is a negative number
+  console.log(monthsNumber); //this is a negative number
   //calculate TOTAL
   var rate = childsnapshot.val().monthlyRate;
   console.log(rate); //this is a string
