@@ -64,5 +64,6 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
   var monthlyRateTd = $("<td>").text(childsnapshot.val().monthlyRate); //from database
   var totalTd = $("<td>").text(total);//calculated value
   tRow.append(nameTd, positionTd, startDateTd, monthsWorkedTd, monthlyRateTd, totalTd);
-  $(".tableBody").append("<tr>", tRow);
+  console.log(tRow);
+  $(".tableBody").append(tRow);
 })
