@@ -15,7 +15,7 @@ var position = "";
 var startDate = "09/01/2017";
 var startFormat = "MM/DD/YYYY";
 var startMoment = moment(startDate, startFormat);
-console.log(moment(startMoment).diff(moment(), "months"));// returns negative number
+console.log(moment().diff(moment(startMoment), "months"));// returns POSITIVE number
 var monthlyRate = 100;
 var totalBilled = "";
 
@@ -43,9 +43,9 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
   // Calculate Months Worked
   var startDate = childsnapshot.val().startDate;
   console.log(startDate); //does get last date, but as YYYY/MM/DD 
-  var startMoment = moment(startDate, "YYYY/MM/DD");
+  var startMoment = moment(startDate).format("DD/MM/YYYY");
   console.log(startMoment);//this is an object
-  var monthsDiffernce = moment(startMoment).diff(moment(), "M"); //should be a number but isn't
+  var monthsDiffernce = moment(startMoment).diff(moment(new Date()), "M"); //should be a number but isn't
   var monthsNumber = parseInt(monthsDiffernce);
   console.log(monthsDiffernce); //this is a negative number
   //calculate TOTAL
@@ -60,9 +60,9 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
   var nameTd = $("<td>").text(childsnapshot.val().name);//from database
   var positionTd = $("<td>").text(childsnapshot.val().position);//from database
   var startDateTd = $("<td>").text(childsnapshot.val().startDate);//from database
-  var monthsWorkedTd = $("<td>").text(monthsWorked); //calculated value
+  var monthsWorkedTd = $("<td>").text(monthsDiffernce); //calculated value
   var monthlyRateTd = $("<td>").text(childsnapshot.val().monthlyRate); //from database
   var totalTd = $("<td>").text(total);//calculated value
   tRow.append(nameTd, positionTd, startDateTd, monthsWorkedTd, monthlyRateTd, totalTd);
-  $(".tableBody").append(tRow)
+  $(".tableBody").append("<tr>", tRow);
 })
