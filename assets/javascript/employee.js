@@ -39,9 +39,9 @@ $("#submit").on("click", function (event) {
 // let's fill in a table!!!
 
 database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (childsnapshot) {
- 
+
   var tRow = $("<tr>");
-  var tBody= $("tbody"); 
+  var tBody = $("tbody");
   // tBody.empty(); //remove this to get list of all new values
   // Calculate Months Worked
   var startDate = childsnapshot.val().startDate;
@@ -54,20 +54,20 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
   //calculate TOTAL
   var rate = childsnapshot.val().monthlyRate;
   console.log(rate); //this is a string
-  var rateNumber = parseInt(rate);  
+  var rateNumber = parseInt(rate);
   console.log(rateNumber); //a number!
   var total = monthsNumber * rateNumber;
 
 
   //Check these names. Use childsnapshot.val() if pulling from database, otherwise put calculated
 
- 
+
   var nameTd = $("<td>").text(childsnapshot.val().name);//from database
   var positionTd = $("<td>").text(childsnapshot.val().position);//from database
   var startDateTd = $("<td>").text(childsnapshot.val().startDate);//from database
   var monthsWorkedTd = $("<td>").text(monthsDiffernce); //calculated value
-  var monthlyRateTd = $("<td>").text(childsnapshot.val().monthlyRate); //from database
-  var totalTd = $("<td>").text(total);//calculated value
+  var monthlyRateTd = $("<td>").text("$" + childsnapshot.val().monthlyRate); //from database
+  var totalTd = $("<td>").text("$" + total);//calculated value
   tRow.append(nameTd, positionTd, startDateTd, monthsWorkedTd, monthlyRateTd, totalTd);
   console.log(tRow);
   tBody.append(tRow);
