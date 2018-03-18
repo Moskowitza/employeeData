@@ -1,60 +1,67 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <!-- Latest compiled and minified CSS -->
-        <!-- FIREBASE -->
-        <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
-        <!-- BOOTSTRAP -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- JQUERY -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!-- MOMENT -->
-        <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-        <!-- OUR STYLESHEET -->
-        <link rel="stylesheet" href="assets/style/style.css">
-    </head>
-    <body>
-      <div class="container">
-        <div class="jumbotron">
-          <h1> Employee Data Management</h1>
-        </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading panel-primary">
-            <h3>current employees</h3>
-          </div>
-          <div class="panel-body">
-            <table class="table table-bordered">
-              <tr>
-                <th>Employee Name</th>
-                <th>Postion</th>
-                <th>Start Date</th>
-                <th>Months Worked</th>
-                <th>Monthly Rate</th>
-                <th>Total Billed ($)</th>
-              </tr>
-              <tbody class='tableBody'>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3>Add Employee</h3>
-          </div>
-          <div class="panel-body">
-            <form>
-              <div class="form-group">
-                <input id="name" type="text" name="name" placeholder="employee name" />
-                <input id="position" type="text" name="position" placeholder="position" />
-                <input id="startDate" type="date" name="startDate" placeholder="start date" />
-                <input id="monthlyRate" type="text" name="rate" placeholder="monthly rate" />
-                <button class="btn btn-primary" id="submit">Submit</button>
-              </div>
 
-            </form>
-          </div>
-        </div>
+<head>
+  <!-- Latest compiled and minified CSS -->
+  <!-- FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <!-- JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- MOMENT -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!-- OUR STYLESHEET -->
+  <link rel="stylesheet" href="assets/style/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1> Employee Data Management</h1>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-primary">
+        <h3>current employees</h3>
       </div>
-      <script src="assets/javascript/employee.js"></script>
-    </body>
+      <div class="panel-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Employee Name</th>
+              <th>Postion</th>
+              <th>Start Date</th>
+              <th>Months Worked</th>
+              <th>Monthly Rate</th>
+              <th>Total Billed ($)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Insert employee rows here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3>Add Employee</h3>
+      </div>
+      <div class="panel-body">
+        <form>
+          <div class="form-group">
+            <input id="name" type="text" name="name" placeholder="employee name" />
+            <input id="position" type="text" name="position" placeholder="position" />
+            <input id="startDate" type="date" name="startDate" placeholder="start date" />
+            <input id="monthlyRate" type="text" name="rate" placeholder="monthly rate" />
+            <button class="btn btn-primary" id="submit">Submit</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="assets/javascript/employee.js"></script>
+</body>
+
 </html>

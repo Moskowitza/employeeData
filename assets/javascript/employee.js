@@ -37,9 +37,12 @@ $("#submit").on("click", function (event) {
 
 
 // let's fill in a table!!!
-var tRow = $("<tr>");
+
 database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (childsnapshot) {
-  $(".tableBody").empty()
+ 
+  var tRow = $("<tr>");
+  var tBody= $("tbody"); 
+  // tBody.empty(); //remove this to get list of all new values
   // Calculate Months Worked
   var startDate = childsnapshot.val().startDate;
   console.log(startDate); //does get last date, but as YYYY/MM/DD 
@@ -57,6 +60,8 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 
 
   //Check these names. Use childsnapshot.val() if pulling from database, otherwise put calculated
+
+ 
   var nameTd = $("<td>").text(childsnapshot.val().name);//from database
   var positionTd = $("<td>").text(childsnapshot.val().position);//from database
   var startDateTd = $("<td>").text(childsnapshot.val().startDate);//from database
@@ -65,5 +70,5 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
   var totalTd = $("<td>").text(total);//calculated value
   tRow.append(nameTd, positionTd, startDateTd, monthsWorkedTd, monthlyRateTd, totalTd);
   console.log(tRow);
-  $(".tableBody").append(tRow);
+  tBody.append(tRow);
 })
